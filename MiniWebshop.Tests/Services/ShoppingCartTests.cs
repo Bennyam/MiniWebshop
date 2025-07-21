@@ -2,7 +2,7 @@
 using MiniWebshop.Core.Services;
 using FluentAssertions;
 
-namespace MiniWebshop.Tests;
+namespace MiniWebshop.Tests.Services;
 
 public class ShoppingCartTests
 {
@@ -55,5 +55,23 @@ public class ShoppingCartTests
         cart.Clear();
 
         cart.Items.Should().BeEmpty();
+    }
+
+    [Fact]
+    public void AddProduct_GooitFoutBijNullProduct()
+    {
+        var cart = new ShoppingCart();
+        Action act = () => cart.AddProduct(null!, 1);
+        act.Should().Throw<ArgumentNullException>();
+    }
+
+    [Fact]
+    public void AddProduct_GooitFoutBijNegatiefAantal()
+    {
+        var product = new Product { Id = 1, Naam = "Test", Prijs = 10m };
+        var cart = new ShoppingCart();
+
+        Action act = () => cart.AddProduct(product, 0);
+        act.Should().Throw<ArgumentOutOfRangeException>();
     }
 }
