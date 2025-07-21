@@ -5,10 +5,13 @@ namespace MiniWebshop.Core.Services;
 public class ShoppinCart
 {
   private readonly List<CartItem> _items = new();
-  public IReadOnlyList<CartItem> Items => _items;
+  public IReadOnlyList<CartItem> Items => _items.AsReadOnly();
 
   public void AddProduct(Product product, int aantal)
   {
+    if (product == null) throw new ArgumentNullException(nameof(product));
+    if (aantal <= 0) throw new ArgumentOutOfRangeException(nameof(aantal), "Aantal moet groter zijn dan 0");
+
     var bestaandItem = _items.FirstOrDefault(i => i.Product.Id == product.Id);
 
     if (bestaandItem != null)
