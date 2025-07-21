@@ -2,7 +2,7 @@ using MiniWebshop.Core.Models;
 
 namespace MiniWebshop.Core.Services;
 
-public class ShoppinCart
+public class ShoppingCart
 {
   private readonly List<CartItem> _items = new();
   public IReadOnlyList<CartItem> Items => _items.AsReadOnly();
