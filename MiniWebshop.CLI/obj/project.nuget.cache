@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "yVvPUEzcEDE=",
+  "dgSpecHash": "xWtzO8df+8w=",
   "success": true,
   "projectFilePath": "C:\\Users\\benam\\Desktop\\MiniWebshop\\MiniWebshop.CLI\\MiniWebshop.CLI.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\benam\\.nuget\\packages\\spectre.console\\0.50.0\\spectre.console.0.50.0.nupkg.sha512",
+    "C:\\Users\\benam\\.nuget\\packages\\system.memory\\4.6.3\\system.memory.4.6.3.nupkg.sha512"
+  ],
   "logs": []
 }
