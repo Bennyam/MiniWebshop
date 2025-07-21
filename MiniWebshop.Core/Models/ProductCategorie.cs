@@ -1,6 +1,6 @@
 namespace MiniWebshop.Core.Models;
 
-public enum ProuctCategorie
+public enum ProductCategorie
 {
   Onbekend,
   Electronica,

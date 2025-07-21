@@ -1,3 +1,4 @@
+using MiniWebshop.Core.Discounts;
 using MiniWebshop.Core.Models;
 
 namespace MiniWebshop.Core.Services;
@@ -6,6 +7,7 @@ public class ShoppingCart
 {
   private readonly List<CartItem> _items = new();
   public IReadOnlyList<CartItem> Items => _items.AsReadOnly();
+  private IKortingStrategie _kortingStrategie = new GeenKorting();
 
   public void AddProduct(Product product, int aantal)
   {
@@ -27,6 +29,17 @@ public class ShoppingCart
   public decimal TotalPrice()
   {
     return _items.Sum(i => i.Product.Prijs * i.Aantal);
+  }
+
+  public decimal EindTotaal()
+  {
+    var korting = _kortingStrategie.BerekenKorting(this);
+    return TotalPrice() - korting;
+  }
+
+  public void StelKortingStrategieIn(IKortingStrategie strategie)
+  {
+    _kortingStrategie = strategie ?? throw new ArgumentNullException(nameof(strategie));
   }
 
   public void Clear()
